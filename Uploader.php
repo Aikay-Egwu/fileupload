@@ -9,15 +9,16 @@ class Uploader
     public $error   = [];
     //define file types
     private $sizeLimit  = 2000000;
+    //add possible file extensions
     private $extensions = ["jpeg", "jpg", "png"];
     public function __construct($location = null)
     {
         $this->location = $location;
         if (isset($_POST['upfiles'])) {
-            //print_r($_FILES['image']);
-            //$images = $_FILES['image'];
             $this->location = $location;
+            //if a database name was added
             $title          = $_POST['title'];
+            //extract the file parameters
             $names          = $_FILES['image']['name'];
             $types          = $_FILES['image']['type'];
             $tmp_names      = $_FILES['image']['tmp_name'];
@@ -72,7 +73,6 @@ class Uploader
     {
         //echo "Checking size for $param<br>";
         if ($param > $this->sizeLimit) {
-            //echo $parma."<br>";
             return false;
         } else {
             return true;
@@ -81,7 +81,6 @@ class Uploader
 
     private function rename($param)
     {
-        //$time = (string)time();
         $time = $this->microtimeFloat();
         return $time . "." . $this->getFileExtension($param);
     }
@@ -97,8 +96,7 @@ class Uploader
         //rename the file
         $file = $this->rename($file);
         echo $this->location;
-        //echo $file." ".$this->microtime_float()."<br>";
-        //check if the file exists in the folder
+
         if (move_uploaded_file($temp, $this->location . $file)) {
             //add to database
             $this->uploads[] = [
