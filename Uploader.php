@@ -1,6 +1,9 @@
 <?php
 namespace fileupload;
 
+/**
+ * 
+ */
 class Uploader
 {
 
@@ -11,6 +14,10 @@ class Uploader
     private $sizeLimit  = 2000000;
     //add possible file extensions
     private $extensions = ["jpeg", "jpg", "png"];
+    /**
+     * [__construct description]
+     * @param [type] $location [description]
+     */
     public function __construct($location = null)
     {
         $this->location = $location;
@@ -46,6 +53,11 @@ class Uploader
             }
         }
     }
+    /**
+     * [checkExtension description]
+     * @param  [string] $param [description]
+     * @return [boolean]        [description]
+     */
     private function checkExtension($param)
     {
         //echo "Checking extension for $param <br>" ;
