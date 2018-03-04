@@ -16,7 +16,7 @@ class Uploader
         $this->location = $location;
         if (isset($_POST['upfiles'])) {
             $this->location = $location;
-            //if a database name was added
+            //if a database name was added. this is an array
             $title          = $_POST['title'];
             //extract the file parameters
             $names          = $_FILES['image']['name'];
